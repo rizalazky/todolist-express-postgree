@@ -1,0 +1,90 @@
+GET http://localhost:3200/api/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QG1haWwuY29tIiwiZmlyc3ROYW1lIjoidGVzdCIsImxhc3ROYW1lIjoidGVzdCIsImlhdCI6MTcxOTI1MTgyMywiZXhwIjoxNzE5MjUxODYzfQ.dJC6MgBXhlAcUvcXv4ObFhBp_tElPoP9X91F8wKOsyI
+###
+POST  http://localhost:3200/login
+Content-Type: application/json
+
+{
+    "email" : "test@mail.com",
+    "password" : "12345"
+}
+
+###
+POST  http://localhost:3200/logout
+Content-Type: application/json
+
+{
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QG1haWwuY29tIiwiZmlyc3ROYW1lIjoidGVzdCIsImxhc3ROYW1lIjoidGVzdCIsImlhdCI6MTcxOTI1MTc3OH0.5vVtRyF7FNB9njnUhqSTUUqXKi845Rrif4RKOLvkdlc"
+}
+
+###
+POST  http://localhost:3200/token
+Content-Type: application/json
+
+{
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QG1haWwuY29tIiwiZmlyc3ROYW1lIjoidGVzdCIsImxhc3ROYW1lIjoidGVzdCIsImlhdCI6MTcxOTI1MTc3OH0.5vVtRyF7FNB9njnUhqSTUUqXKi845Rrif4RKOLvkdlc"
+}
+
+###
+POST http://localhost:3200/api/users
+Content-Type: application/json
+
+{
+    "email":"test@mail.com",
+    "password" : "12345",
+    "firstName" : "test",
+    "lastName" : "test"
+}
+
+###
+GET http://localhost:3200/api/list
+Content-Type: application/json
+
+###
+POST http://localhost:3200/api/list
+Content-Type: application/json
+
+{
+    "listDesc":"LIST 1",
+    "userId" : 1
+}
+
+###
+PUT http://localhost:3200/api/list/2
+Content-Type: application/json
+
+{
+    "listDesc":"LIST 1 UPDATE"
+}
+
+###
+DELETE  http://localhost:3200/api/list/1
+Content-Type: application/json
+
+
+
+###
+GET http://localhost:3200/api/2/items
+Content-Type: application/json
+
+###
+POST http://localhost:3200/api/2/items
+Content-Type: application/json
+
+{
+    "itemDesc":"item 1"
+}
+
+###
+PUT http://localhost:3200/api/2/items/4
+Content-Type: application/json
+
+{
+    "itemDesc":"ITEM 1 UPDATE"
+}
+
+###
+DELETE  http://localhost:3200/api/2/items/4
+Content-Type: application/json
+
