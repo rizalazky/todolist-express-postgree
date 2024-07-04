@@ -33,7 +33,7 @@ const authenticateToken = (req,res,next) =>{
 }
 
 const generateToken= (user) =>{
-    return jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{expiresIn :'40s'});
+    return jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{expiresIn :'40m'});
 }
 
 const authLogin = async(req,res,next)=>{
