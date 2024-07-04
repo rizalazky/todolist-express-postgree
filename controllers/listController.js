@@ -17,16 +17,19 @@ exports.list = async (req,res,next)=>{
 }
 
 exports.add = async(req,res,next)=>{
+    const user = req.user;
+
     try {
         const insertData = await ListModel.create({
             list_desc : req.body.listDesc,
-            user_id : req.body.userId,
+            user_id : user.id,
         })
         res.json({
             status :"OKE",
             data : insertData
         })
     } catch (error) {
+        console.log(error)
         res.json({
             status :"FAIL",
             data : error.errors
