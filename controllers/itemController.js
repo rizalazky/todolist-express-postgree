@@ -1,14 +1,21 @@
 const db = require('../models')
 const ItemModel = db.Item
+const ListModel = db.List
+
+ItemModel.sync()
+ListModel.sync()
 
 
 exports.list = async (req,res,next)=>{
     const listId = req.params.listId;
 
-    const data = await ItemModel.findAll({
+    const data = await ListModel.findOne({
         where : {
-            list_id : listId
-        }
+            id : listId
+        },
+        include : [{
+            model : ItemModel,
+        }]
     });
     res.json({
         status : "OKE",
