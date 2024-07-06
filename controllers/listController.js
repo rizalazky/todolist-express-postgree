@@ -8,7 +8,8 @@ exports.list = async (req,res,next)=>{
     const data = await ListModel.findAll({
         where : {
             user_id : user.id
-        }
+        },
+        order :['id']
     });
     res.json({
         status : "OKE",
