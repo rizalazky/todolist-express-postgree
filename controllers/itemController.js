@@ -15,7 +15,8 @@ exports.list = async (req,res,next)=>{
         },
         include : [{
             model : ItemModel,
-        }]
+        }],
+        order :[[ItemModel,'id']]
     });
     res.json({
         status : "OKE",
@@ -52,6 +53,26 @@ exports.update = async(req,res,next)=>{
                 id : id
             }
         });
+        res.json({
+            status :"OKE",
+            data : updateData
+        })
+    } catch (error) {
+        res.json({
+            status :"FAIL",
+            data : error.errors
+        })
+    }
+}
+
+exports.markAsCompletedTask = async (req,res,next)=>{
+    const id = req.params.id
+    try {
+        const task = await ItemModel.findByPk(id);
+
+        task.completed = !task.completed;
+        const updateData = await task.save()
+       
         res.json({
             status :"OKE",
             data : updateData

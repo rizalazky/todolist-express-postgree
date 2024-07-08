@@ -23,6 +23,7 @@ router.delete('/list/:id',listController.delete)
 router.get('/:listId/items',itemController.list)
 router.post('/:listId/items',itemController.add)
 router.put('/:listId/items/:id',itemController.update)
+router.put('/:listId/items/:id/complete',itemController.markAsCompletedTask)
 router.delete('/:listId/items/:id',itemController.delete)
 
 module.exports = router
