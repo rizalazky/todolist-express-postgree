@@ -21,6 +21,7 @@ router.delete('/list/:id',listController.delete)
 
 // list items
 router.get('/:listId/items',itemController.list)
+router.get('/:listId/items/:id',itemController.detail)
 router.post('/:listId/items',itemController.add)
 router.put('/:listId/items/:id',itemController.update)
 router.put('/:listId/items/:id/complete',itemController.markAsCompletedTask)

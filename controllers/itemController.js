@@ -24,6 +24,16 @@ exports.list = async (req,res,next)=>{
     });
 }
 
+exports.detail = async (req,res,next)=>{
+    const id = req.params.id;
+
+    const data = await Item.findByPk(id);
+    res.json({
+        status : "OKE",
+        data : data
+    });
+}
+
 exports.add = async(req,res,next)=>{
     try {
         const insertData = await ItemModel.create({
@@ -67,6 +77,7 @@ exports.update = async(req,res,next)=>{
 
 exports.markAsCompletedTask = async (req,res,next)=>{
     const id = req.params.id
+    console.log('MARK COMPLETED')
     try {
         const task = await ItemModel.findByPk(id);
 
