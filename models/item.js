@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
   Item.init({
     list_id: DataTypes.INTEGER,
     list_desc: DataTypes.STRING,
-    completed: DataTypes.BOOLEAN
+    completed: DataTypes.BOOLEAN,
+    myday: DataTypes.BOOLEAN,
+    important: DataTypes.BOOLEAN,
+    notes: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Item',
