@@ -27,7 +27,7 @@ exports.list = async (req,res,next)=>{
 exports.detail = async (req,res,next)=>{
     const id = req.params.id;
 
-    const data = await Item.findByPk(id);
+    const data = await ItemModel.findByPk(id);
     res.json({
         status : "OKE",
         data : data
@@ -52,36 +52,35 @@ exports.add = async(req,res,next)=>{
     }
 }
 
-exports.update = async(req,res,next)=>{
-    const id = req.params.id
-    try {
 
-        const updateData = await ItemModel.update({
-            list_desc : req.body.itemDesc
-        },{
-            where : {
-                id : id
-            }
-        });
-        res.json({
-            status :"OKE",
-            data : updateData
-        })
-    } catch (error) {
-        res.json({
-            status :"FAIL",
-            data : error.errors
-        })
-    }
-}
 
-exports.markAsCompletedTask = async (req,res,next)=>{
-    const id = req.params.id
-    console.log('MARK COMPLETED')
+exports.update = async (req,res,next)=>{
+    const id = req.params.id;
+    let data = req.body;
+    console.log('DATA',req.body.completed)
     try {
         const task = await ItemModel.findByPk(id);
 
-        task.completed = !task.completed;
+        if(data.list_desc){
+            task.list_desc = data.list_desc;
+        }
+        if(data.notes){
+            task.notes = data.notes;
+        }
+        if(data.duedate){
+            task.duedate = data.duedate;
+        }
+
+        if(data.completed){
+            task.completed = !task.completed;
+        }
+        if(data.important){
+            task.important = !task.important;
+        }
+        if(data.myday){
+            task.myday = !task.myday;
+        }
+        
         const updateData = await task.save()
        
         res.json({
