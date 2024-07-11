@@ -1,3 +1,4 @@
+const { where } = require('sequelize')
 const db = require('../models')
 const ItemModel = db.Item
 const ListModel = db.List
@@ -7,17 +8,33 @@ ListModel.sync()
 
 
 exports.list = async (req,res,next)=>{
+    const flag = ['myday','completed','important'];
     const listId = req.params.listId;
+    let data;
+    if(flag.includes(listId)){
+        let whereOption = {};
+        whereOption[listId] = true;
+        data = await ListModel.findAll({
+           
+            include : [{
+                model : ItemModel,
+                where : whereOption
+            }],
+            order :[[ItemModel,'id']]
+        });
+    }else{
+        // find specific id
+        data = await ListModel.findOne({
+            where : {
+                id : listId
+            },
+            include : [{
+                model : ItemModel,
+            }],
+            order :[[ItemModel,'id']]
+        });
+    }
 
-    const data = await ListModel.findOne({
-        where : {
-            id : listId
-        },
-        include : [{
-            model : ItemModel,
-        }],
-        order :[[ItemModel,'id']]
-    });
     res.json({
         status : "OKE",
         data : data
