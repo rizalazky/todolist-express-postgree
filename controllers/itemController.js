@@ -8,12 +8,15 @@ ListModel.sync()
 
 
 exports.list = async (req,res,next)=>{
-    const flag = ['myday','completed','important'];
+    const flag = ['myday','completed','important','all'];
     const listId = req.params.listId;
-    let data;
+    let data; 
     if(flag.includes(listId)){
         let whereOption = {};
-        whereOption[listId] = true;
+        if(listId !== 'all'){
+            whereOption[listId] = true;
+            // whe
+        }
         data = await ListModel.findAll({
            
             include : [{
